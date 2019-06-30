@@ -5,8 +5,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css'
 import Counter from './components/counter';
+import Posts from './components/OnePost';
+const API_URL = 'http://localhost:5000/';
 
-ReactDOM.render(<Counter />, document.getElementById('root'));
+
+ReactDOM.render(<App />, document.getElementById('root'));
+// ReactDOM.render(<Counter />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -1,26 +1,67 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
+import OnePost from './components/OnePost';
+import CreatePost from './components/CreatePost';
+import Header from './components/Header';
+import Posts from './components/Posts';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import firebaseApp from './firebase/init';
+// import db from './firebase/init';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+// const API_URL = 'http://localhost:5000/';
+
+class App extends React.Component {
+	state = {
+		posts: [
+			// {id: null, title: '', text: '', date: ''}
+		]
+	};
+
+	getPosts = () => {
+		let ref = firebaseApp.database().ref('/');
+		ref.on('value', snapshot => {
+			const posts = snapshot.val();
+			this.setState(posts);
+			console.log(posts);
+		});
+	};
+
+	renderPosts() {
+		if (this.state.posts.length === 0)
+			return <p> No posts! </p>;
+		return <ul>
+			{this.state.posts.map(post => <li key={post.id}>{post}</li>)}
+		</ul>
+	}
+
+	// componentDidMount() {
+	// 	this.getPosts();
+	// }
+
+	render(){
+		return (
+			<Router>
+				<div className="App">
+					<header className="App-header">
+						<Header/>
+						<Switch>
+							<Route path="/" exact component={Posts}/>
+							<Route path="/all_posts" exact component={Posts}/>
+							<Route path="/new_post" component={CreatePost}/>
+							<Route path="/post:id" component={OnePost}/>
+						</Switch>
+					</header>
+					<div className="main">
+						{/*{this.renderPosts()}*/}
+						{/*<OnePost/>*/}
+						{/*<CreatePost/>*/}
+					</div>
+				</div>
+			</Router>
+		);
+	}
+
 }
 
 export default App;

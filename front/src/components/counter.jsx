@@ -14,12 +14,31 @@ class Counter extends Component {
             {this.state.tags2.map(tag => <li key={tag}>{tag}</li>)}
         </ul>
     }
+
+    // constructor(props) {
+    //     super(props);
+    //     // console.log('Constructor', this);
+    //     this.handleIncrement = this.handleIncrement.bind(this);
+    // }
+
+    // handleIncrement() {
+    //     console.log('Increment Clicked', this.state.count);
+    // }
+
+    handleIncrement = product => {
+        console.log(product);
+        this.setState({count: this.state.count + 1})
+    };
+
     render() {
         return (
                 <div>
                     {/*<img src={this.state.imgUrl} alt=""/>*/}
-                    {/*<span className="badge badge-primary m-2">{this.formatCount()}</span>*/}
-                    {/*<button className="btn btn-secondary btn-sm">Increment</button>*/}
+                    <span className="badge badge-primary m-2">{this.formatCount()}</span>
+                    <button
+                        className="btn btn-secondary btn-sm"
+                        onClick={() => this.handleIncrement({id: 1})}
+                    >Increment</button>
                     {this.renderTags()}
                 </div>
             );
