@@ -1,5 +1,4 @@
 import React from 'react';
-import OnePost from './OnePost'
 import firebaseApp from '../firebase/init';
 import PostCard from "./PostCard";
 
@@ -13,7 +12,7 @@ class Posts extends React.Component {
         ref.on('value', snapshot => {
             const posts = snapshot.val();
             this.setState({posts: posts});
-            console.log(posts);
+            // console.log(posts);
         });
     };
 
@@ -23,7 +22,7 @@ class Posts extends React.Component {
         const items = [];
 
         for (let postID in this.state.posts) {
-            items.push(<PostCard post={this.state.posts[postID]} />)
+            items.push(<PostCard post={this.state.posts[postID]} key={postID} id={postID}/>)
         }
     	return <div className="card-group">{items}</div>;
     };
@@ -34,17 +33,9 @@ class Posts extends React.Component {
     render () {
         return (
             <div className='all_posts main'>
-                <div class="row" >
+                <div className="row" >
                     {this.renderPosts()}
                 </div>
-                {/*<div className="card" style={{width: 18+'rem'}}>*/}
-                {/*    <div className="card-body">*/}
-                {/*        <h5 className="card-title">Card title</h5>*/}
-                {/*        <p className="card-text">Some quick example text to build on the card title and make up the*/}
-                {/*            bulk of the card's content.</p>*/}
-                {/*        <a href="#" className="btn btn-primary">Go somewhere</a>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
             </div>
         );
     }

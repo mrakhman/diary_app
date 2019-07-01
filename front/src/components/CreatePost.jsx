@@ -1,7 +1,10 @@
 import React from 'react';
 import firebaseApp from '../firebase/init';
-import uuid from "uuid";
 
+// import Notify from '../Notifications'
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+
+import uuid from "uuid";
 const API_URL = 'http://localhost:5000/';
 
 
@@ -11,38 +14,6 @@ class CreatePost extends React.Component {
         this.state = {title: null, text: null, date: null};
     }
 
-    // submitPost = (e) => {
-    //     e.preventDefault();
-    //
-    //     axios.post(`${API_URL}/posts/create`, {
-    //         gender: this.user_details.gender,
-    //         sex_pref: this.user_details.sex_pref,
-    //         bio_text: this.user_details.bio_text,
-    //         profile_image: this.user_details.profile_image,
-    //         dob: this.user_details.dob,
-    //         tags: this.user_details.tags
-    //         })
-    //         .then(response => {
-    //             if(response.status === 200) {
-    //                 // this.$notify({group: 'foo', type: 'success', title: 'Saved!', text: 'personal details are updated', duration: -1})
-    //             }
-    //             console.log(response)
-    //         })
-    //         .catch(error => {
-    //             console.log(error)
-    //         })
-    // };
-
-    // submitPosts = () => {
-    //     let ref = firebaseApp.database().ref('/');
-    //     ref.on('value', snapshot => {
-    //         const posts = snapshot.val();
-    //         this.setState(posts);
-    //         console.log(posts);
-    //     });
-    // };
-
-
     sendPost = () => {
         let id = uuid.v4();
         let now = Date.now();
@@ -51,7 +22,9 @@ class CreatePost extends React.Component {
             text: this.state.text,
             date: now,
         }).then(() => {
-            console.log("All bien!")
+            this.setState({title: null, text: null, date: null});
+            NotificationManager.success('New post created', 'Success!');
+            console.log("OK!")
         }).catch(() => {
             console.log("Error blyad")
         })
@@ -76,6 +49,7 @@ class CreatePost extends React.Component {
                     {/*    <label htmlFor="date">Date</label>*/}
                     {/*    <input onChange={(e) => {this.setState({date: e.target.value})}} className="form-control" type="date" id="date"/>*/}
                     {/*</div>*/}
+                    <NotificationContainer/>
                     <button type="submit" className="btn btn-primary" onClick={this.sendPost}>Submit</button>
                 {/*</form>*/}
             </div>

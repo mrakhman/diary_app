@@ -4,12 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css'
-import Counter from './components/counter';
-import Posts from './components/OnePost';
+import 'react-notifications/lib/notifications.css';
 const API_URL = 'http://localhost:5000/';
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// ReactDOM.render(<App />, document.getElementById('root'));
 // ReactDOM.render(<Counter />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

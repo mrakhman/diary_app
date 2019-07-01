@@ -4,6 +4,7 @@ import OnePost from './components/OnePost';
 import CreatePost from './components/CreatePost';
 import Header from './components/Header';
 import Posts from './components/Posts';
+import Home from './components/Home';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import firebaseApp from './firebase/init';
 // import db from './firebase/init';
@@ -46,17 +47,12 @@ class App extends React.Component {
 					<header className="App-header">
 						<Header/>
 						<Switch>
-							<Route path="/" exact component={Posts}/>
+							<Route path="/" exact component={Home}/>
 							<Route path="/all_posts" exact component={Posts}/>
-							<Route path="/new_post" component={CreatePost}/>
-							<Route path="/post:id" component={OnePost}/>
+							<Route path="/new_post" exact component={CreatePost}/>
+							<Route path="/post/:id" component={OnePost}/>
 						</Switch>
 					</header>
-					<div className="main">
-						{/*{this.renderPosts()}*/}
-						{/*<OnePost/>*/}
-						{/*<CreatePost/>*/}
-					</div>
 				</div>
 			</Router>
 		);
