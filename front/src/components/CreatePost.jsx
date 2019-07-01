@@ -24,9 +24,8 @@ class CreatePost extends React.Component {
         }).then(() => {
             this.setState({title: null, text: null, date: null});
             NotificationManager.success('New post created', 'Success!');
-            console.log("OK!")
         }).catch(() => {
-            console.log("Error blyad")
+            NotificationManager.warning('There was an error creating this post', 'Error!');
         })
     };
 
@@ -34,6 +33,8 @@ class CreatePost extends React.Component {
     render () {
         return (
             <div className='create_post main'>
+                <div className="row">
+                <div className="col-lg-6">
                 {/*<form onSubmit={this.sendPost}>*/}
                 {/*<form>*/}
                     <div className="form-group">
@@ -45,13 +46,10 @@ class CreatePost extends React.Component {
                         <textarea onChange={(e) => {this.setState({text: e.target.value})}} className="form-control" id="text" rows="3" placeholder="enter post text">
                         </textarea>
                     </div>
-                    {/*<div className="form-group">*/}
-                    {/*    <label htmlFor="date">Date</label>*/}
-                    {/*    <input onChange={(e) => {this.setState({date: e.target.value})}} className="form-control" type="date" id="date"/>*/}
-                    {/*</div>*/}
                     <NotificationContainer/>
                     <button type="submit" className="btn btn-primary" onClick={this.sendPost}>Submit</button>
                 {/*</form>*/}
+                </div></div>
             </div>
         );
     }

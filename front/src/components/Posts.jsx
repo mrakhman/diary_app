@@ -12,7 +12,6 @@ class Posts extends React.Component {
         ref.on('value', snapshot => {
             const posts = snapshot.val();
             this.setState({posts: posts});
-            // console.log(posts);
         });
     };
 
