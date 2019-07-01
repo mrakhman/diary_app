@@ -1,11 +1,7 @@
 import React from 'react';
 import firebaseApp from '../firebase/init';
-
-// import Notify from '../Notifications'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
-
 import uuid from "uuid";
-const API_URL = 'http://localhost:5000/';
 
 
 class CreatePost extends React.Component {
@@ -34,22 +30,20 @@ class CreatePost extends React.Component {
         return (
             <div className='create_post main'>
                 <div className="row">
-                <div className="col-lg-6">
-                {/*<form onSubmit={this.sendPost}>*/}
-                {/*<form>*/}
-                    <div className="form-group">
-                        <label htmlFor="title">Title</label>
-                        <input onChange={(e) => {this.setState({title: e.target.value})}} type="text" className="form-control" id="title" placeholder="enter post title"/>
+                    <div className="col-lg-6">
+	                    <div className="form-group">
+	                        <label htmlFor="title">Title</label>
+	                        <input onChange={(e) => {this.setState({title: e.target.value})}} type="text" className="form-control" id="title" placeholder="enter post title"/>
+	                    </div>
+	                    <div className="form-group">
+	                        <label htmlFor="text">Text</label>
+	                        <textarea onChange={(e) => {this.setState({text: e.target.value})}} className="form-control" id="text" rows="3" placeholder="enter post text">
+	                        </textarea>
+	                    </div>
+	                    <NotificationContainer/>
+	                    <button type="submit" className="btn btn-primary" onClick={this.sendPost}>Submit</button>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="text">Text</label>
-                        <textarea onChange={(e) => {this.setState({text: e.target.value})}} className="form-control" id="text" rows="3" placeholder="enter post text">
-                        </textarea>
-                    </div>
-                    <NotificationContainer/>
-                    <button type="submit" className="btn btn-primary" onClick={this.sendPost}>Submit</button>
-                {/*</form>*/}
-                </div></div>
+                </div>
             </div>
         );
     }

@@ -1,11 +1,10 @@
 import React from 'react';
-import axios from 'axios';
 import OnePost from './components/OnePost';
 import CreatePost from './components/CreatePost';
 import Header from './components/Header';
 import Posts from './components/Posts';
 import Home from './components/Home';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import firebaseApp from './firebase/init';
 // import db from './firebase/init';
 

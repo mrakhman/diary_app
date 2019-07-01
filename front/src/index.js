@@ -5,8 +5,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'react-notifications/lib/notifications.css';
-const API_URL = 'http://localhost:5000/';
-
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
