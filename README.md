@@ -3,7 +3,7 @@
 ### React + Firebase app for personal diary
 
 
-## In the project directory, you can run:
+### In the front directory, you can run:
 
 First,
 ### `npm install`
