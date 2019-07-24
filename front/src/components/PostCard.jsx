@@ -10,7 +10,7 @@ function PostCard(props) {
 						<p className="card-text">{props.post.text}</p>
 						<Link to={{
 							pathname: `/post/${props.id}`,
-							state: [{title: props.post.title, text: props.post.text}]
+							state: [{title: props.post.title, text: props.post.text, date: props.post.date, tag: props.post.tag}]
 						}}><button className="btn btn-primary">Open</button></Link>
 					</div>
 				</div>
