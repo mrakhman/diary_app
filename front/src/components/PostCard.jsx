@@ -12,6 +12,7 @@ function PostCard(props) {
 							pathname: `/post/${props.id}`,
 							state: [{title: props.post.title, text: props.post.text, date: props.post.date, tag: props.post.tag}]
 						}}><button className="btn btn-primary">Open</button></Link>
+                        {/*<button onClick={() => {deletePost(props.post.id)}}>Delete</button>*/}
 					</div>
 				</div>
 			</div>;
