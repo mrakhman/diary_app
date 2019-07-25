@@ -12,13 +12,12 @@ class CreatePost extends React.Component {
             date: '',
             my_tag: "#happy_day",
             tags: [
-                {id : 2, text: "#happy_day"},
-                {id : 1, text: "#sad_day"},
+                {id : 1, text: "#happy_day"},
+                {id : 2, text: "#sad_day"},
                 {id : 3, text: "#boring_day"},
                 {id : 4, text: "#crazy_day"}
             ]
         };
-
     }
 
     sendPost = (e) => {
