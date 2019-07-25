@@ -1,11 +1,7 @@
 import React from 'react';
 import Posts from './Posts'
 
-
 class Home extends React.Component {
-	state = {
-	};
-
 	render () {
 		return (
 			<div className='main'>

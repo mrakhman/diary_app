@@ -15,3 +15,65 @@ code {
 .main {
   padding: 20px;
 }
+
+.menu {
+  background-color: #f8f9fa;
+  padding-top: 10px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.no-decoration {
+  text-decoration: none;
+  display: flex;
+}
+
+.nav-menu {
+  font-size: 20px;
+  text-decoration: none;
+  margin-top: -10px;
+  margin-right: 10px;
+  margin-left: 5px;
+  display: flex;
+  flex-direction: row;
+  color: grey;
+}
+
+.active .nav-menu:hover {
+  color: black;
+}
+
+button {
+  color: #396;
+  /*font-weight: bold;*/
+  font-size: 16px;
+  padding: 8px;
+  width: 70px;
+  border: 1px solid #396;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: none;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+button:hover {
+  color: white;
+  background-color: #396;
+}
+
+input {
+  width: 40%;
+  border-radius: 2px;
+}
+
+.cards-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}

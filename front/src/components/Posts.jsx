@@ -4,36 +4,33 @@ import PostCard from "./PostCard";
 
 class Posts extends React.Component {
     state = {
-        posts: {}
+        posts: []
     };
 
     getPosts = () => {
         let ref = firebaseApp.database().ref('/');
         ref.on('value', snapshot => {
-            const posts = snapshot.val();
+            let posts = snapshot.val();
+            posts = Object.values(posts);
             this.setState({posts: posts});
         });
     };
 
-    renderPosts = () => {
-    	if (this.state.posts.length === 0)
-    		return <p> No posts! </p>;
-        const items = [];
-
-        for (let postID in this.state.posts) {
-            items.push(<PostCard post={this.state.posts[postID]} key={postID} id={postID}/>)
-        }
-    	return <div className="card-group">{items}</div>;
+    listOfPosts = () => {
+        if (this.state.posts.length === 0)
+            return <p> No posts! </p>;
+        else
+            return <PostCard posts={this.state.posts}/>
     };
 
     componentDidMount() {
     	this.getPosts();
     }
-    render () {
+    render() {
         return (
             <div className='all_posts main'>
                 <div className="row" >
-                    {this.renderPosts()}
+                    {this.listOfPosts()}
                 </div>
             </div>
         );

@@ -25,7 +25,6 @@ class CreatePost extends React.Component {
         })
     };
 
-
     render () {
         return (
             <div className='create_post main'>
