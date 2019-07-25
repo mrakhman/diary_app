@@ -8,11 +8,15 @@ class Posts extends React.Component {
     };
 
     getPosts = () => {
+        var all_posts = [];
         let ref = firebaseApp.database().ref('/');
-        ref.on('value', snapshot => {
-            let posts = snapshot.val();
-            posts = Object.values(posts);
-            this.setState({posts: posts});
+        ref.orderByChild("date").on('value', snapshot => {
+            snapshot.forEach(function(childSnapshot) {
+                var post = childSnapshot.val();
+                // Use array.unshift(new_element) instead of array.push(new_element) to get descending order of posts
+                all_posts.unshift(post);
+            });
+            this.setState({posts: all_posts});
         });
     };
 
@@ -29,7 +33,8 @@ class Posts extends React.Component {
     render() {
         return (
             <div className='all_posts main'>
-                <div className="row" >
+                <h3>All posts</h3>
+                <div className="cards-list">
                     {this.listOfPosts()}
                 </div>
             </div>

@@ -63,17 +63,50 @@ button:hover {
   background-color: #396;
 }
 
-input {
+input, textarea {
   width: 40%;
-  border-radius: 2px;
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 10px 8px;
+  margin: 2px 0 15px;
+  font-size: 16px;
+}
+
+select {
+  width: 10%;
+  display: block;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 10px 8px;
+  margin: 2px 0 15px;
+  font-size: 16px;
+}
+
+label {
+  display: block;
 }
 
 .cards-list {
+  height: auto;
   display: flex;
   flex-direction: row;
+  /*flex-wrap: wrap;*/
+  justify-content: flex-start;
 }
 
 .card {
   display: flex;
   flex-direction: column;
+  margin: 0 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card-body {
+  margin: 10px;
+}
+
+.date {
+  color: green;
 }
