@@ -40,7 +40,7 @@ code {
   color: grey;
 }
 
-.active .nav-menu:hover {
+.active, .nav-menu:hover {
   color: black;
 }
 
