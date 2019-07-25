@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 // src={"../../public/diary.png"}
 
 class Header extends React.Component {
@@ -11,8 +11,8 @@ class Header extends React.Component {
                         <img src={process.env.PUBLIC_URL + "diary.png"} alt="logo" width="40"/>
                     </Link>
                     <ul className="no-decoration">
-                        <li className="no-decoration"><Link className="nav-menu" to="/new_post">New post</Link></li>
-                        <li className="no-decoration"><Link className="nav-menu" to="/all_posts">All posts</Link></li>
+                        <li className="no-decoration"><NavLink className="nav-menu" to="/new_post">New post</NavLink></li>
+                        <li className="no-decoration"><NavLink className="nav-menu" to="/all_posts">All posts</NavLink></li>
                     </ul>
                 </nav>
             </div>
