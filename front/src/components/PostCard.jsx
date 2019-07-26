@@ -13,8 +13,9 @@ class PostCard extends React.Component {
 		const { posts } = this.props;
 		const postList = posts.map(post => {
 			return (
-				<div className="card" key={post.date} style={{width: 18 + 'rem'}}>
+				<div className="card" key={post.date} >
 					<div className="card-body">
+						<small>{post.tag}</small>
 						<h4>{this.limitText(post.title, 80)}</h4>
 						<p>{this.limitText(post.text, 160)}</p>
 						<Link to={{
@@ -35,4 +36,5 @@ class PostCard extends React.Component {
 		);
 	}
 }
+
 export default PostCard

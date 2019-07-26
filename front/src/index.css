@@ -110,3 +110,12 @@ label {
 .date {
   color: green;
 }
+
+.last-post {
+  display: block;
+  width: 450px;
+  margin: 0 0 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
