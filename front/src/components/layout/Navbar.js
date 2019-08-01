@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, NavLink } from "react-router-dom";
 import Logo from '../../diary.png';
+import SignedInLinks from './SignedInLinks';
+import SignedOutLinks from './SignedOutLinks';
 
-class Header extends React.Component {
+class Navbar extends React.Component {
     render () {
         return (
             <div className='header'>
@@ -10,13 +12,11 @@ class Header extends React.Component {
                     <Link className="" to="/">
                         <img src={Logo} alt="logo" width="40"/>
                     </Link>
-                    <ul className="no-decoration">
-                        <li className="no-decoration"><NavLink className="nav-menu" to="/new_post">New post</NavLink></li>
-                        <li className="no-decoration"><NavLink className="nav-menu" to="/all_posts">All posts</NavLink></li>
-                    </ul>
+                    <SignedInLinks/>
+                    <SignedOutLinks/>
                 </nav>
             </div>
         );
     }
 }
-export default Header;
+export default Navbar;
