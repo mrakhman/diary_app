@@ -1,9 +1,11 @@
 import React from 'react';
-import firebaseApp from '../firebase/init';
+// import firebaseApp from '../firebase/init';
 import PostCard from "./PostCard";
 import { connect } from 'react-redux';
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from 'redux';
 
-class Posts extends React.Component {
+class AllPosts extends React.Component {
     state = {
         // posts: [],
         selected_tag: "all",
@@ -117,9 +119,16 @@ class Posts extends React.Component {
 // Redux map state
 const mapStateToProps = (state) => {
     return {
-        posts: state.posts_test
+        // posts: state.project.posts_test
+        posts: state.firestore.ordered.posts || state.project.posts_test
     }
 };
 
-// Redux connect
-export default connect(mapStateToProps)(Posts);
+// Redux connect is a function which returns higher order component to take in AllPosts
+// export default connect(mapStateToProps)(AllPosts);
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        {collection: 'posts'}
+    ])
+    )(AllPosts);

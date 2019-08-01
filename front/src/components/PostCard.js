@@ -21,7 +21,7 @@ class PostCard extends React.Component {
 						<Link to={{
 							// pathname: `/post/${this.props.id}`, // No Redux id
 							pathname: `/post/${post.id}`, // Redux id
-							state: [{title: post.title, text: post.text, date: post.date, tag: post.tag}]
+							// state: [{title: post.title, text: post.text, date: post.date, tag: post.tag}]
 						}}>
 							<button className="btn btn-primary">Open</button>
 							{/*<button onClick={() => {deletePost(props.post.id)}}>Delete</button>*/}

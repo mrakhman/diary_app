@@ -22,6 +22,7 @@ code {
   padding-left: 10px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .no-decoration {
@@ -76,7 +77,7 @@ button.delete:hover {
 
 input, textarea {
   width: 40%;
-  display: inline-block;
+  display: block;
   border-radius: 4px;
   border: 1px solid #ccc;
   padding: 10px 8px;
@@ -122,13 +123,19 @@ label {
   color: green;
 }
 
-.last-post {
-  display: block;
-  width: 450px;
-  margin: 0 0 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+/*.last-post {*/
+/*  display: block;*/
+/*  width: 450px;*/
+/*  margin: 0 0 10px;*/
+/*  padding: 10px;*/
+/*  border: 1px solid #ccc;*/
+/*  border-radius: 5px;*/
+/*}*/
+
+.right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 

@@ -1,15 +1,17 @@
 import React from 'react';
-import firebaseApp from '../firebase/init';
+import firebaseApp from '../firebase/firebaseInit';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import uuid from "uuid";
+import { connect } from "react-redux";
+import { createPost } from "../store/actions/postActions";
 
 
 class CreatePost extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {title: '',
+        this.state = {
+            title: '',
             text: '',
-            date: '',
             my_tag: "#happy_day",
             tags: [
                 {id : 1, text: "#happy_day"},
@@ -20,22 +22,31 @@ class CreatePost extends React.Component {
         };
     }
 
+    // sendPost = (e) => {
+    //     e.preventDefault();
+    //     if (this.state.title && this.state.text) {
+    //         let id = uuid.v4();
+    //         let now = Date.now();
+    //         firebaseApp.database().ref(id).set({
+    //             title: this.state.title,
+    //             text: this.state.text,
+    //             date: now,
+    //             tag: this.state.my_tag
+    //         }).then(() => {
+    //             this.setState({title: '', text: '', date: ''});
+    //             NotificationManager.success('New post created', 'Success!');
+    //         }).catch(() => {
+    //             NotificationManager.warning('There was an error creating this post', 'Error!');
+    //         })
+    //     }
+    //     else
+    //         NotificationManager.warning('Post must have title and text', 'Oops!');
+    // };
+
     sendPost = (e) => {
-        e.preventDefault();
         if (this.state.title && this.state.text) {
-            let id = uuid.v4();
-            let now = Date.now();
-            firebaseApp.database().ref(id).set({
-                title: this.state.title,
-                text: this.state.text,
-                date: now,
-                tag: this.state.my_tag
-            }).then(() => {
-                this.setState({title: '', text: '', date: ''});
-                NotificationManager.success('New post created', 'Success!');
-            }).catch(() => {
-                NotificationManager.warning('There was an error creating this post', 'Error!');
-            })
+            e.preventDefault();
+            this.props.createPost(this.state)
         }
         else
             NotificationManager.warning('Post must have title and text', 'Oops!');
@@ -100,4 +111,11 @@ class CreatePost extends React.Component {
         );
     }
 }
-export default CreatePost;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createPost: (post) => dispatch(createPost(post))
+    }
+};
+
+export default connect(null, mapDispatchToProps)(CreatePost);

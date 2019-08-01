@@ -1,10 +1,10 @@
 import React from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
-import {connect} from 'react-redux'
-import { deletePost } from "../actions/postActions";
+import { connect } from 'react-redux'
+import { deletePost } from "../store/actions/postActions";
 
-class OnePost extends React.Component {
+class PostDetails extends React.Component {
     // ifHasTag = () => {
     //     if (this.props.location.state[0].tag) {
     //         return <h4>Tag: {this.props.location.state[0].tag}</h4>
@@ -19,6 +19,14 @@ class OnePost extends React.Component {
         }
         else
             return <h4>No tag</h4>
+    };
+
+    ifHasDate = () => {
+        if (this.props.post.date) {
+            return <Moment className="date" format="YYYY-MM-DD, HH:mm">{this.props.post.date}</Moment>
+        }
+        else
+            return <h4>No date</h4>
     };
 
     handleDelete = () => {
@@ -40,7 +48,7 @@ class OnePost extends React.Component {
     render () {
         return (
             <div className='post main'>
-                <Moment className="date" format="YYYY-MM-DD, HH:mm">{this.props.post.date}</Moment>
+                {/*{this.ifHasDate()}*/}
                 {this.ifHasTag()}
                 <h3>{this.props.post.title}</h3>
                 <p>{this.props.post.text}</p>
@@ -53,11 +61,11 @@ class OnePost extends React.Component {
 
 // We want to get data from individual post
 const mapStateToProps = (state, ownProps) => {
-    // id from App.js from Route tag of {OnePost}
+    // id from App.js from Route tag of {PostDetails}
     let id = ownProps.match.params.id;
     return {
         // Loop through the posts and find post which id matches id set above. Return this post
-        post: state.posts_test.find((post) => post.id.toString() === id)
+        post: state.project.posts.find((post) => post.id.toString() === id)
     }
 };
 
@@ -68,4 +76,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OnePost);
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetails);
