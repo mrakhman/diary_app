@@ -19,7 +19,8 @@ class PostCard extends React.Component {
 						<h4>{this.limitText(post.title, 80)}</h4>
 						<p>{this.limitText(post.text, 160)}</p>
 						<Link to={{
-							pathname: `/post/${this.props.id}`,
+							// pathname: `/post/${this.props.id}`, // No Redux id
+							pathname: `/post/${post.id}`, // Redux id
 							state: [{title: post.title, text: post.text, date: post.date, tag: post.tag}]
 						}}>
 							<button className="btn btn-primary">Open</button>

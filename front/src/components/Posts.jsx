@@ -1,11 +1,11 @@
 import React from 'react';
 import firebaseApp from '../firebase/init';
 import PostCard from "./PostCard";
+import { connect } from 'react-redux';
 
 class Posts extends React.Component {
     state = {
-        posts: [],
-        // _posts: [],
+        // posts: [],
         selected_tag: "all",
         tags: [
             {id : 0, text: "all"},
@@ -16,26 +16,37 @@ class Posts extends React.Component {
         ]
     };
 
-    getPosts = () => {
-        let all_posts = [];
-        let ref = firebaseApp.database().ref('/');
-        ref.orderByChild("date").on('value', snapshot => {
-            snapshot.forEach(function(childSnapshot) {
-                let post = childSnapshot.val();
-                // Use array.unshift(new_element) instead of array.push(new_element) to get descending order of posts
-                all_posts.unshift(post);
-            });
-            this.setState({posts: all_posts});
-            // this.setState({_posts: all_posts});
-        });
-    };
+    // getPosts = () => {
+    //     let all_posts = [];
+    //     let ref = firebaseApp.database().ref('/');
+    //     ref.orderByChild("date").on('value', snapshot => {
+    //         snapshot.forEach(function(childSnapshot) {
+    //             let post = childSnapshot.val();
+    //             // Use array.unshift(new_element) instead of array.push(new_element) to get descending order of posts
+    //             all_posts.unshift(post);
+    //         });
+    //         this.setState({posts: all_posts});
+    //         // this.setState({_posts: all_posts});
+    //     });
+    // };
 
+
+    // Redux ListOfPosts
     listOfPosts = () => {
-        if (this.state.posts.length === 0)
+        const {posts} = this.props;
+        if (posts.length === 0)
             return <p> No posts! </p>;
         else
-            return <PostCard posts={this.state.posts}/>
+            return <PostCard posts={posts}/>
     };
+
+    // No Redux ListOfPosts
+    // listOfPosts = () => {
+    //     if (this.state.posts.length === 0)
+    //         return <p> No posts! </p>;
+    //     else
+    //         return <PostCard posts={this.state.posts}/>
+    // };
 
     selectTag = (e) => {
         this.getPosts();
@@ -78,8 +89,9 @@ class Posts extends React.Component {
     // };
 
     componentDidMount() {
-    	this.getPosts();
+    	// this.getPosts();
     }
+
     render() {
         const selectOptions = this.state.tags.map(tag => {
             return (
@@ -100,4 +112,14 @@ class Posts extends React.Component {
         );
     }
 }
-export default Posts;
+
+
+// Redux map state
+const mapStateToProps = (state) => {
+    return {
+        posts: state.posts_test
+    }
+};
+
+// Redux connect
+export default connect(mapStateToProps)(Posts);
