@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from "react-router-dom";
-import Logo from '../diary.png';
+import Logo from '../../diary.png';
 
 class Header extends React.Component {
     render () {
