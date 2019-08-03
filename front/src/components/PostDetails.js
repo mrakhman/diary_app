@@ -3,6 +3,9 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 import { connect } from 'react-redux'
 import { deletePost } from "../store/actions/postActions";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from 'redux';
+import {Redirect} from "react-router-dom";
 
 class PostDetails extends React.Component {
     // ifHasTag = () => {
@@ -46,15 +49,29 @@ class PostDetails extends React.Component {
     // }
 
     render () {
-        return (
-            <div className='post main'>
-                {/*{this.ifHasDate()}*/}
-                {this.ifHasTag()}
-                <h3>{this.props.post.title}</h3>
-                <p>{this.props.post.text}</p>
-                <button className="delete" onClick={this.handleDelete}>Delete Post</button>
-            </div>
-        );
+        console.log(this.props);
+        const { post, auth } = this.props;
+        if (!auth.uid) return <Redirect to="/login" />;
+
+        if (post) {
+            return (
+                <div className='post main'>
+                    {/*{this.ifHasDate()}*/}
+                    {this.ifHasTag()}
+                    <h3>{this.props.post.title}</h3>
+                    <p>{this.props.post.text}</p>
+                    <button className="delete" onClick={this.handleDelete}>Delete Post</button>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div className='post main'>
+                    <p>Loading project...</p>
+                </div>
+            )
+        }
+
     }
 }
 
@@ -63,9 +80,13 @@ class PostDetails extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     // id from App.js from Route tag of {PostDetails}
     let id = ownProps.match.params.id;
+    const posts = state.firestore.data.posts;
+    const post = posts ? posts[id] : null;
     return {
         // Loop through the posts and find post which id matches id set above. Return this post
-        post: state.project.posts.find((post) => post.id.toString() === id)
+        // post: state.project.posts.find((post) => post.id.toString() === id)
+        post: post,
+        auth: state.firebase.auth
     }
 };
 
@@ -76,4 +97,10 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetails);
+// export default connect(mapStateToProps, mapDispatchToProps)(PostDetails);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([
+        {collection: 'posts'}
+    ])
+)(PostDetails);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PostCard from "./PostCard";
+import {Redirect} from "react-router-dom";
 
 class Home extends React.Component {
 	// state = {
@@ -48,7 +49,8 @@ class Home extends React.Component {
 	// };
 
 	lastPost = () => {
-		const {posts} = this.props;
+		const {posts, auth} = this.props;
+		if (!auth.uid) return <Redirect to="/login" />;
 		if (posts.length === 0)
 			return <p> No posts yet! </p>;
 		else
@@ -72,7 +74,8 @@ class Home extends React.Component {
 // Redux map state
 const mapStateToProps = (state) => {
 	return {
-		posts: state.project.posts_test
+		posts: state.project.posts_test,
+		auth: state.firebase.auth
 	}
 };
 

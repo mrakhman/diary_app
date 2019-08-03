@@ -4,7 +4,7 @@ import {NotificationContainer, NotificationManager} from 'react-notifications';
 import uuid from "uuid";
 import { connect } from "react-redux";
 import { createPost } from "../store/actions/postActions";
-
+import {Redirect} from "react-router-dom";
 
 class CreatePost extends React.Component {
     constructor(props) {
@@ -69,6 +69,8 @@ class CreatePost extends React.Component {
                 <option key={tag.id}>{tag.text}</option>
             )
         });
+        const {auth} = this.props;
+        if (!auth.uid) return <Redirect to="/login" />;
 
         return (
             <div className='create_post main'>
@@ -112,10 +114,16 @@ class CreatePost extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+};
+
 const mapDispatchToProps = (dispatch) => {
     return {
         createPost: (post) => dispatch(createPost(post))
     }
 };
 
-export default connect(null, mapDispatchToProps)(CreatePost);
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);

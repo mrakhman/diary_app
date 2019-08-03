@@ -22,7 +22,13 @@ code {
   padding-left: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
+}
+
+.right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .no-decoration {
@@ -132,10 +138,22 @@ label {
 /*  border-radius: 5px;*/
 /*}*/
 
-.right {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+.red_color {
+  color: red;
 }
 
+.logout {
+  color: darkred;
+  cursor: pointer;
+}
 
+.logout:hover {
+  color: red;
+}
+
+.hello {
+  margin-left: 90px;
+  display: flex;
+  align-self: center;
+  color: #396;
+}

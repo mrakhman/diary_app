@@ -4,6 +4,7 @@ import PostCard from "./PostCard";
 import { connect } from 'react-redux';
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from 'redux';
+import {Redirect} from "react-router-dom";
 
 class AllPosts extends React.Component {
     state = {
@@ -100,6 +101,9 @@ class AllPosts extends React.Component {
                 <option key={tag.id}>{tag.text}</option>
             )
         });
+        const {auth} = this.props;
+        if (!auth.uid) return <Redirect to="/login" />;
+
         return (
             <div className='all_posts main'>
                 <h3>My posts</h3>
@@ -120,7 +124,8 @@ class AllPosts extends React.Component {
 const mapStateToProps = (state) => {
     return {
         // posts: state.project.posts_test
-        posts: state.firestore.ordered.posts || state.project.posts_test
+        posts: state.firestore.ordered.posts || state.project.posts_test,
+        auth: state.firebase.auth
     }
 };
 

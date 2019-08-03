@@ -1,3 +1,4 @@
+// TODO: create a new one deletePost
 export const deletePost = (id) => {
 	return {
 		type: 'DELETE_POST',
