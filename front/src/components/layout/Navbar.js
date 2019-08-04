@@ -10,9 +10,9 @@ class Navbar extends React.Component {
         const {auth, profile} = this.props;
         const links = auth.uid ? <SignedInLinks profile={profile}/> : <SignedOutLinks/>;
         return (
-            <div className='header'>
+            <div>
                 <nav className="menu">
-                    <Link className="" to="/">
+                    <Link to="/">
                         <img src={Logo} alt="logo" width="40"/>
                     </Link>
                     { links }

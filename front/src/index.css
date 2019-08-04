@@ -25,6 +25,22 @@ code {
   /*justify-content: space-between;*/
 }
 
+.menu-div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav-tab {
+  font-size: 20px;
+  text-decoration: none;
+  margin-top: -10px;
+  margin-right: 10px;
+  margin-left: 5px;
+  color: grey;
+}
+
 .right {
   display: flex;
   flex-direction: row;
@@ -34,17 +50,6 @@ code {
 .no-decoration {
   text-decoration: none;
   display: flex;
-}
-
-.nav-menu {
-  font-size: 20px;
-  text-decoration: none;
-  margin-top: -10px;
-  margin-right: 10px;
-  margin-left: 5px;
-  display: flex;
-  flex-direction: row;
-  color: grey;
 }
 
 .active, .nav-menu:hover {
@@ -73,12 +78,32 @@ button:hover {
 button.delete {
   color: darkred;
   border: 1px solid darkred;
-
 }
 
 button.delete:hover {
   color: white;
   background-color: darkred;
+}
+
+button.logout {
+  margin-left: 10px;
+  margin-right: 20px;
+  color: darkred;
+  border: 1px solid darkred;
+  background-color: #f8f9fa;
+}
+
+button.logout:hover {
+  color: white;
+  background-color: darkred;
+  border: 1px solid darkred;
+}
+
+.hello {
+  margin-left: 10px;
+  margin-right: 10px;
+  align-self: center;
+  color: #396;
 }
 
 input, textarea {
@@ -140,20 +165,4 @@ label {
 
 .red_color {
   color: red;
-}
-
-.logout {
-  color: darkred;
-  cursor: pointer;
-}
-
-.logout:hover {
-  color: red;
-}
-
-.hello {
-  margin-left: 90px;
-  display: flex;
-  align-self: center;
-  color: #396;
 }
