@@ -12,7 +12,7 @@ export const createPost = (post) => {
 		const firestore = getFirestore();
 		const profile = getState().firebase.profile;
 		const authorId = getState().firebase.auth.uid;
-		firestore.collection('posts').add({
+		firestore.q('posts').add({
 			title: post.title,
 			text: post.text,
 			tag: post.my_tag,
