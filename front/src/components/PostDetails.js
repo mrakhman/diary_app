@@ -26,7 +26,7 @@ class PostDetails extends React.Component {
 
     ifHasDate = () => {
         if (this.props.post.date) {
-            return <Moment className="date" format="YYYY-MM-DD, HH:mm">{this.props.post.date}</Moment>
+            return <Moment className="date" format="YYYY-MM-DD, HH:mm">{this.props.post.date.toDate().toString()}</Moment>
         }
         else
             return <h4>No date</h4>
@@ -56,7 +56,7 @@ class PostDetails extends React.Component {
         if (post) {
             return (
                 <div className='post main'>
-                    {/*{this.ifHasDate()}*/}
+                    {this.ifHasDate()}
                     {this.ifHasTag()}
                     <h3>{this.props.post.title}</h3>
                     <p>{this.props.post.text}</p>
