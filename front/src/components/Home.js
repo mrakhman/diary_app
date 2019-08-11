@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PostCard from "./PostCard";
 import {Redirect} from "react-router-dom";
+import {compose} from "redux";
+import {firestoreConnect} from "react-redux-firebase";
 
 class Home extends React.Component {
 	// state = {
@@ -55,7 +57,7 @@ class Home extends React.Component {
 			return <p> No posts yet! </p>;
 		else
 			return (
-				<div>
+				<div className="cards-list">
 					<PostCard posts={posts.slice(0, 1)}/>
 				</div>
 			)
@@ -74,10 +76,15 @@ class Home extends React.Component {
 // Redux map state
 const mapStateToProps = (state) => {
 	return {
-		posts: state.project.posts_test,
+		posts: state.firestore.ordered.posts || state.project.posts_test,
 		auth: state.firebase.auth
 	}
 };
 
 // Redux connect is a function which returns higher order component to take in AllPosts
-export default connect(mapStateToProps)(Home);
+export default compose(
+	connect(mapStateToProps),
+	firestoreConnect([
+		{collection: 'posts', orderBy: ['date', 'desc']}
+	])
+)(Home);

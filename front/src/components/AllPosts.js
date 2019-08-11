@@ -8,7 +8,7 @@ import {Redirect} from "react-router-dom";
 
 class AllPosts extends React.Component {
     state = {
-        // posts: [],
+        posts: [],
         selected_tag: "all",
         tags: [
             {id : 0, text: "all"},
@@ -33,10 +33,8 @@ class AllPosts extends React.Component {
     //     });
     // };
 
-
-    // Redux ListOfPosts
     listOfPosts = () => {
-        const {posts} = this.props;
+        let posts = this.filterPosts(this.state.selected_tag);
         if (posts.length === 0)
             return <p> No posts! </p>;
         else
@@ -51,27 +49,45 @@ class AllPosts extends React.Component {
     //         return <PostCard posts={this.state.posts}/>
     // };
 
+    // selectTag = (e) => {
+    //     this.getPosts();
+    //     this.setState({selected_tag: e.target.value});
+    //     this.filterPosts(e.target.value);
+    // };
+
     selectTag = (e) => {
-        this.getPosts();
         this.setState({selected_tag: e.target.value});
         this.filterPosts(e.target.value);
     };
 
     filterPosts = (tag_selected) => {
-        // this.setState({posts: this._posts});
+        const {posts} = this.props;
         if (tag_selected === 'all') {
-            console.log("all posts");
+            return(posts);
         }
         else {
-            var filtered_posts = this.state.posts;
-            console.log(filtered_posts);
-            filtered_posts = filtered_posts.filter(function (post) {
+            let filtered_posts = posts.filter(function (post) {
                 return post.tag === tag_selected;
             });
-            console.log(filtered_posts);
-            this.setState({posts: filtered_posts})
+            return (filtered_posts);
         }
     };
+
+    // filterPosts = (tag_selected) => {
+    //     // this.setState({posts: this._posts});
+    //     if (tag_selected === 'all') {
+    //         console.log("all posts");
+    //     }
+    //     else {
+    //         var filtered_posts = this.state.posts;
+    //         console.log(filtered_posts);
+    //         filtered_posts = filtered_posts.filter(function (post) {
+    //             return post.tag === tag_selected;
+    //         });
+    //         console.log(filtered_posts);
+    //         this.setState({posts: filtered_posts})
+    //     }
+    // };
 
     // filterPosts2 = (tag) => {
     //     if (this.state.selected_tag === 'all') {
@@ -107,7 +123,6 @@ class AllPosts extends React.Component {
         return (
             <div className='all_posts main'>
                 <h3>My posts</h3>
-                <h2>{this.state.selected_tag}</h2>
                 <select id="select-tag" value={this.state.selected_tag} onChange={this.selectTag}>
                     {selectOptions}
                 </select>
@@ -134,6 +149,10 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        {collection: 'posts', orderBy: ['date', 'desc']}
+        {
+            collection: 'posts',
+            // where: [['', '>', '']],
+            orderBy: ['date', 'desc']
+        }
     ])
     )(AllPosts);

@@ -117,6 +117,7 @@ input, textarea {
 }
 
 select {
+  min-width: 200px;
   width: 10%;
   display: block;
   border-radius: 4px;
@@ -131,16 +132,12 @@ label {
 }
 
 .cards-list {
-  height: auto;
   display: flex;
   flex-direction: row;
-  /*flex-wrap: wrap;*/
-  justify-content: flex-start;
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
+  min-width: 440px;
   margin: 0 0 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -153,15 +150,6 @@ label {
 .date {
   color: green;
 }
-
-/*.last-post {*/
-/*  display: block;*/
-/*  width: 450px;*/
-/*  margin: 0 0 10px;*/
-/*  padding: 10px;*/
-/*  border: 1px solid #ccc;*/
-/*  border-radius: 5px;*/
-/*}*/
 
 .red_color {
   color: red;

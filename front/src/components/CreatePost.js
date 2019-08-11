@@ -46,7 +46,9 @@ class CreatePost extends React.Component {
     sendPost = (e) => {
         if (this.state.title && this.state.text) {
             e.preventDefault();
-            this.props.createPost(this.state)
+            this.props.createPost(this.state);
+            NotificationManager.success('New post created', 'Success!');
+            this.setState({title: '', text: '', my_tag: "#happy_day"});
         }
         else
             NotificationManager.warning('Post must have title and text', 'Oops!');

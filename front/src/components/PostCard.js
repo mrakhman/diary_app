@@ -16,8 +16,8 @@ class PostCard extends React.Component {
 				<div className="card" key={post.date} >
 					<div className="card-body">
 						<small>{post.tag}</small>
-						<h4>{this.limitText(post.title, 80)}</h4>
-						<p>{this.limitText(post.text, 160)}</p>
+						<h4>{this.limitText(post.title, 70)}</h4>
+						<p>{this.limitText(post.text, 100)}</p>
 						<Link to={{
 							// pathname: `/post/${this.props.id}`, // No Redux id
 							pathname: `/post/${post.id}`, // Redux id
